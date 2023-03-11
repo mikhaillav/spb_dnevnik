@@ -1,4 +1,4 @@
-const dnevnik2 = require('dnevnik2')
+const dnevnik2 = require('spb_dnevnik')
 let dnevnik = new dnevnik2
 
 dnevnik.login(email,password).then(() => {
