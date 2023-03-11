@@ -33,6 +33,8 @@ class dnevnik2 {
   }
 
   /**
+   * Запрос на api/user/auth/login.
+   * 
    * Вход в дневник, получение токена.
    * @param {String} email 
    * @param {String} password 
@@ -136,8 +138,8 @@ class dnevnik2 {
    * 
    * Возвращает информацию о предметах за период.
    * @param {Number} p_page номер страницы
-   * @param {String} p_datetime_from DD.MM.YYYY HH:MM:SS
-   * @param {String} p_datetime_to DD.MM.YYYY HH:MM:SS
+   * @param {String} p_datetime_from дата и время начала периода (DD.MM.YYYY HH:MM:SS)
+   * @param {String} p_datetime_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
    * @param {Number} p_educations айди ученика
   */
   get_journal_lesson_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations) {
@@ -157,8 +159,9 @@ class dnevnik2 {
    * 
    * Возвращает информацю об оценках за период.
    * @param {Number} p_educations айди ученика
-   * @param {String} p_date_from DD.MM.YYYY
-   * @param {String} p_date_to DD.MM.YYYY
+   * @param {String} p_date_from дата и время начала периода (DD.MM.YYYY HH:MM:SS)
+   * @param {String} p_date_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
+   * @param {Number} p_limit_ лимит оценок
    * @param {Number} p_page номер страницы
   */
   get_journal_estimate_table(p_educations, p_date_from, p_date_to, p_limit = 1, p_page = 1) {
