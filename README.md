@@ -1,54 +1,96 @@
 # SPB_Dnevnik2
 Клиент для [электронного дневника](https://dnevnik2.petersburgedu.ru/) Санкт-Петербурга. 
 
-- [Примеры](#примеры)
-- [FAQ](#faq)
+- [Документация](#документация)
 
-## Примеры
-
-### Получение уроков, оценок, дз за период времени:
-
+## Документация
+- **login(email,password) - Вход в дневник, получение токена.**
 ```js
-const dnevnik2 = require('spb_dnevnik')
-let dnevnik = new dnevnik2
-
-dnevnik.login(email,password).then(() => {
-  dnevnik.getdays(p_page,p_datetime_from, p_datetime_to, p_educations).then((data) => {
-    subjects = []
-
-    data.items.forEach(el => {
-      subjects[el.subject_name] = []
-    });
-
-    data.items.forEach(el => {
-
-      obj = {
-        "Theme": el.content_name,
-        "HomeWork": "",
-        "Marks": "",
-        "Date": el.datetime_to
-      }
-
-      if(el.estimates[0] != undefined){
-        obj.Marks = el.estimates[0].estimate_value_name
-      }
-
-      el.tasks.forEach(ej => {
-        obj.HomeWork = ej.task_name
-      });
-
-      subjects[el.subject_name].push(obj)
-    });
-    console.log(subjects)
-  })
+/**
+ * Запрос на api/user/auth/login.
+ * @param {String} email 
+ * @param {String} password 
+*/
+dnevnik.login(email, password).then(() => {
+  //код
 })
 ```
 
-## FAQ
-
+- **get_journal_institution_related_jurisdiction_list(p_page) - Возвращает информацию о районе.**
+```js
+/**
+ * Запрос на api/journal/institution/related-jurisdiction-list.
+ * @param {Number} p_page номер страницы
+*/
+dnevnik.get_journal_institution_related_jurisdiction_list(p_page).then((data) => {
+  console.log(data)
+})
 ```
-Q: Как получить параметр p_educations?
-A: Окрыть страницу https://dnevnik2.petersburgedu.ru/schedule, потом окно отладки (ctrl + shift + i). 
+
+- **get_journal_institution_related_institution_list(p_page, p_jurisdictions) - Возвращает информацию о школе.**
+```js
+/**
+ * Запрос на api/journal/institution/related-institution-list.
+ * @param {Number} p_page номер страницы
+ * @param {Number} p_jurisdictions айди района
+*/
+dnevnik.get_journal_institution_related_institution_list(p_page, p_jurisdictions).then((data) => {
+  console.log(data)
+})
 ```
 
-![image](https://user-images.githubusercontent.com/59438110/224507335-4e62707a-5589-4248-9d99-659da53eda98.png)
+- **get_journal_group_related_group_list(p_page, p_jurisdictions, p_institutions) - Возвращает информацию о классе.**
+```js
+/**
+ * Запрос на api/journal/group/related-group-list.
+ * @param {Number} p_page номер страницы
+ * @param {Number} p_jurisdictions айди района
+ * @param {Number} p_institutions айди школы
+*/
+dnevnik.get_journal_group_related_group_list(p_page, p_jurisdictions, p_institutions).then((data) => {
+  console.log(data)
+})
+```
+
+- **get_journal_person_related_person_list(p_page, p_jurisdictions, p_institutions, p_groups) - Возвращает информацию о ученике.**
+```js
+/**
+ * Запрос на api/journal/person/related-person-list.
+ * @param {Number} p_page номер страницы
+ * @param {Number} p_jurisdictions айди района
+ * @param {Number} p_institutions айди школы
+ * @param {Number} p_groups айди класса
+*/
+dnevnik.get_journal_person_related_person_list(p_page, p_jurisdictions, p_institutions, p_groups).then((data) => {
+  console.log(data)
+})
+```
+
+- **get_journal_lesson_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations) - Возвращает информацию о предметах за период.**
+```js
+/**
+ * Запрос на api/journal/lesson/list-by-education.
+ * @param {Number} p_page номер страницы
+ * @param {String} p_datetime_from дата и время начала периода (DD.MM.YYYY HH:MM:SS)
+ * @param {String} p_datetime_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
+ * @param {Number} p_educations айди ученика
+*/
+dnevnik.get_journal_lesson_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations).then((data) => {
+  console.log(data)
+})
+```
+
+- **get_journal_estimate_table(p_educations, p_date_from, p_date_to, p_limit, p_page) - Возвращает информацю об оценках за период.**
+```js
+/**
+ * Запрос на api/journal/estimate/table.
+ * @param {Number} p_educations айди ученика
+ * @param {String} p_date_from дата и время начала периода (DD.MM.YYYY HH:MM:SS)
+ * @param {String} p_date_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
+ * @param {Number} p_limit_ лимит оценок
+ * @param {Number} p_page номер страницы
+*/
+dnevnik.get_journal_estimate_table(p_educations, p_date_from, p_date_to, p_limit = 1, p_page = 1).then((data) => {
+  console.log(data)
+})
+```
