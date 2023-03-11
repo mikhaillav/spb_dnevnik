@@ -33,6 +33,8 @@ class dnevnik2 {
   }
 
   /**
+   * Запрос на api/user/auth/login.
+   * 
    * Вход в дневник, получение токена.
    * @param {String} email 
    * @param {String} password 
@@ -54,13 +56,93 @@ class dnevnik2 {
   }
 
   /**
-   * Получение дней за период (темы, дз, отметки в какой-то день).
-   * @param {Number} p_page 
-   * @param {String} p_datetime_from DD.MM.YYYY HH:MM:SS
-   * @param {String} p_datetime_to DD.MM.YYYY HH:MM:SS
-   * @param {Number} p_educations 
+   * Запрос на api/journal/person/related-person-list.
+   * 
+   * Возвращает информацию о ученике.
+   * @param {Number} p_page номер страницы
+   * @param {Number} p_jurisdictions айди района
+   * @param {Number} p_institutions айди школы
+   * @param {Number} p_groups айди класса
   */
-  getdays(p_page, p_datetime_from, p_datetime_to, p_educations) {
+  get_journal_person_related_person_list(p_page, p_jurisdictions, p_institutions, p_groups) {
+    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/person/related-person-list?p_page=${p_page}&p_jurisdictions[]=${p_jurisdictions}&p_institutions[]=${p_institutions}&p_groups[]=${p_groups}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/person/related-person-list";
+    });
+  }
+
+  /**
+   * Запрос на api/journal/group/related-group-list.
+   * 
+   * Возвращает информацию о классе.
+   * @param {Number} p_page номер страницы
+   * @param {Number} p_jurisdictions айди района
+   * @param {Number} p_institutions айди школы
+  */
+  get_journal_group_related_group_list(p_page, p_jurisdictions, p_institutions) {
+    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/group/related-group-list?p_page=${p_page}&p_jurisdictions[]=${p_jurisdictions}&p_institutions[]=${p_institutions}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/group/related-group-list";
+    });
+  }
+
+  /**
+   * Запрос на api/journal/institution/related-institution-list.
+   * 
+   * Возвращает информацию о школе.
+   * @param {Number} p_page номер страницы
+   * @param {Number} p_jurisdictions айди района
+  */
+  get_journal_institution_related_institution_list(p_page, p_jurisdictions) {
+    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/institution/related-institution-list?p_page=${p_page}&p_jurisdictions[]=${p_jurisdictions}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/institution/related-institution-list";
+    });
+  }
+
+  /**
+   * Запрос на api/journal/institution/related-jurisdiction-list.
+   * 
+   * Возвращает информацию о районе.
+   * @param {Number} p_page номер страницы
+  */
+  get_journal_institution_related_jurisdiction_list(p_page) {
+    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/institution/related-jurisdiction-list?p_page=${p_page}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/institution/related-jurisdiction-list";
+    });
+  }
+
+  /**
+   * Запрос на api/journal/lesson/list-by-education.
+   * 
+   * Возвращает информацию о предметах за период.
+   * @param {Number} p_page номер страницы
+   * @param {String} p_datetime_from дата и время начала периода (DD.MM.YYYY HH:MM:SS)
+   * @param {String} p_datetime_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
+   * @param {Number} p_educations айди ученика
+  */
+  get_journal_lesson_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations) {
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/lesson/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations%5B%5D=${p_educations}`,this.headers)
     .then(response => {
@@ -68,18 +150,21 @@ class dnevnik2 {
     })
     .catch(error => {
       console.log(error)
-      throw "Something went wrong by getting days";
+      throw "Something went wrong by getting api/journal/lesson/list-by-education";
     });
-  } 
+  }
 
   /**
-   * Получение оценок за период.
-   * @param {Number} p_educations 
-   * @param {String} p_date_from DD.MM.YYYY
-   * @param {String} p_date_to DD.MM.YYYY
-   * @param {Number} p_page 
+   * Запрос на api/journal/estimate/table.
+   * 
+   * Возвращает информацю об оценках за период.
+   * @param {Number} p_educations айди ученика
+   * @param {String} p_date_from дата и время начала периода (DD.MM.YYYY HH:MM:SS)
+   * @param {String} p_date_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
+   * @param {Number} p_limit_ лимит оценок
+   * @param {Number} p_page номер страницы
   */
-  getmarks(p_educations, p_date_from, p_date_to, p_limit = 1, p_page = 1) {
+  get_journal_estimate_table(p_educations, p_date_from, p_date_to, p_limit = 1, p_page = 1) {
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/estimate/table?p_educations[]=${p_educations}&p_date_from=${p_date_from}&p_date_to=${p_date_to}&p_limit=${p_limit}&p_page=${p_page}`,this.headers)
     .then(response => {
@@ -87,7 +172,7 @@ class dnevnik2 {
     })
     .catch(error => {
       console.log(error)
-      throw "Something went wrong by getting marks";
+      throw "Something went wrong by getting api/journal/estimate/table";
     });
   } 
 }
