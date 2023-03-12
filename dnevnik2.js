@@ -38,7 +38,7 @@ class dnevnik2 {
    * Вход в дневник, получение токена.
    * @param {String} email 
    * @param {String} password 
-   */
+  */
   async login(email,password){
     await axios.post('https://dnevnik2.petersburgedu.ru/api/user/auth/login',{
       type: "email",
@@ -52,6 +52,43 @@ class dnevnik2 {
     })
     .catch(error => {
       throw "Your password or email probably invalid. Or you try connect api too many times (wait a bit)."
+    });
+  }
+
+  /**
+   * Запрос на api/journal/person/related-child-list.
+   * 
+   * Возвращает информацию о ученике.
+   * @param {Number} p_page номер страницы
+  */
+  get_journal_person_related_person_list(p_page) {
+    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/person/related-child-list?p_page=${p_page}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/person/related-child-list";
+    });
+  }
+
+  /**
+   * Запрос на api/journal/teacher/list.
+   * 
+   * Возвращает информацию об учителях.
+   * @param {Number} p_page номер страницы
+   * @param {Number} p_educations айди ученика
+  */
+  get_journal_person_related_person_list(p_page, p_educations) {
+    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/teacher/list?p_page=${p_page}&p_educations[]=${p_educations}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/teacher/list";
     });
   }
 
@@ -136,7 +173,7 @@ class dnevnik2 {
   /**
    * Запрос на api/journal/lesson/list-by-education.
    * 
-   * Возвращает информацию о предметах за период.
+   * Возвращает информацию о уроках за период.
    * @param {Number} p_page номер страницы
    * @param {String} p_datetime_from дата и время начала периода (DD.MM.YYYY HH:MM:SS)
    * @param {String} p_datetime_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
@@ -144,7 +181,7 @@ class dnevnik2 {
   */
   get_journal_lesson_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations) {
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
-    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/lesson/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations%5B%5D=${p_educations}`,this.headers)
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/lesson/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations[]=${p_educations}`,this.headers)
     .then(response => {
       return response.data.data
     })
