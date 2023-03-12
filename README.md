@@ -16,7 +16,7 @@
 - [Лицензия](#лицензия)
 
 ## Примеры
-cooming soon 
+comming soon 
 
 ## Спасибо
 Отдельное спасибо этим ребятам
@@ -25,4 +25,4 @@ cooming soon
 
 ## Лицензия
 
-GPL-3.0
+[GPL-3.0](https://ru.wikipedia.org/wiki/GNU_General_Public_License#GPL_v3)
