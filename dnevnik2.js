@@ -136,7 +136,7 @@ class dnevnik2 {
   /**
    * Запрос на api/journal/lesson/list-by-education.
    * 
-   * Возвращает информацию о предметах за период.
+   * Возвращает информацию о уроках за период.
    * @param {Number} p_page номер страницы
    * @param {String} p_datetime_from дата и время начала периода (DD.MM.YYYY HH:MM:SS)
    * @param {String} p_datetime_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
@@ -144,7 +144,7 @@ class dnevnik2 {
   */
   get_journal_lesson_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations) {
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
-    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/lesson/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations%5B%5D=${p_educations}`,this.headers)
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/lesson/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations[]=${p_educations}`,this.headers)
     .then(response => {
       return response.data.data
     })
