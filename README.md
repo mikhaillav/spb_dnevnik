@@ -1,4 +1,4 @@
-# SPB_Dnevnik2
+# spb_dnevnik
 Клиент для [электронного дневника](https://dnevnik2.petersburgedu.ru/) Санкт-Петербурга. 
 
 - [Документация](#документация)
