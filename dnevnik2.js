@@ -61,7 +61,7 @@ class dnevnik2 {
    * Возвращает информацию о ученике.
    * @param {Number} p_page номер страницы
   */
-  get_journal_person_related_person_list(p_page) {
+  get_journal_person_related_child_list(p_page) {
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/person/related-child-list?p_page=${p_page}`,this.headers)
     .then(response => {
@@ -80,7 +80,7 @@ class dnevnik2 {
    * @param {Number} p_page номер страницы
    * @param {Number} p_educations айди ученика
   */
-  get_journal_person_related_person_list(p_page, p_educations) {
+  get_journal_teacher_list(p_page, p_educations) {
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/teacher/list?p_page=${p_page}&p_educations[]=${p_educations}`,this.headers)
     .then(response => {
