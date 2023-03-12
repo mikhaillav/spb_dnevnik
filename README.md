@@ -9,7 +9,8 @@
 [![npm version](https://img.shields.io/npm/v/spb_dnevnik)](https://www.npmjs.org/package/spb_dnevnik)
 [![npm downloads](https://img.shields.io/npm/dm/spb_dnevnik)](https://npm-stat.com/charts.html?package=spb_dnevnik)
 
-- [Документация](https://github.com/mikhaillav/spb_dnevnik/wiki)
+- [Документация по апи](https://github.com/mikhaillav/spb_dnevnik/wiki/api)
+- [Документация по библиотеке](https://github.com/mikhaillav/spb_dnevnik/wiki/Api-spb_dnevnik)
 - [Примеры](#примеры)
 - [Спасибо](#спасибо)
 - [Лицензия](#лицензия)
