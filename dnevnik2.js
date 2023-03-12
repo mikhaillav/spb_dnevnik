@@ -38,7 +38,7 @@ class dnevnik2 {
    * Вход в дневник, получение токена.
    * @param {String} email 
    * @param {String} password 
-   */
+  */
   async login(email,password){
     await axios.post('https://dnevnik2.petersburgedu.ru/api/user/auth/login',{
       type: "email",
