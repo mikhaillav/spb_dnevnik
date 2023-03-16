@@ -9,14 +9,20 @@
 [![npm version](https://img.shields.io/npm/v/spb_dnevnik)](https://www.npmjs.org/package/spb_dnevnik)
 [![npm downloads](https://img.shields.io/npm/dm/spb_dnevnik)](https://npm-stat.com/charts.html?package=spb_dnevnik)
 
-- [Документация по апи](https://github.com/mikhaillav/spb_dnevnik/wiki/api)
+- [Установка](#установка)
+- [Документация по апи дневника](https://github.com/mikhaillav/spb_dnevnik/wiki/api)
 - [Документация по библиотеке](https://github.com/mikhaillav/spb_dnevnik/wiki/Api-spb_dnevnik)
 - [Примеры](#примеры)
 - [Спасибо](#спасибо)
 - [Лицензия](#лицензия)
 
+## Установка
+``` 
+npm i spb_dnevnik
+```
+
 ## Примеры
-cooming soon 
+comming soon 
 
 ## Спасибо
 Отдельное спасибо этим ребятам
@@ -25,4 +31,4 @@ cooming soon
 
 ## Лицензия
 
-GPL-3.0
+[GPL-3.0](https://ru.wikipedia.org/wiki/GNU_General_Public_License#GPL_v3)
