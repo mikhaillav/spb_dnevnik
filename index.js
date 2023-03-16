@@ -56,6 +56,43 @@ class dnevnik2 {
   }
 
   /**
+   * Запрос на api/journal/person/related-child-list.
+   * 
+   * Возвращает информацию о ученике.
+   * @param {Number} p_page номер страницы
+  */
+  get_journal_person_related_child_list(p_page) {
+    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/person/related-child-list?p_page=${p_page}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/person/related-child-list";
+    });
+  }
+
+  /**
+   * Запрос на api/journal/teacher/list.
+   * 
+   * Возвращает информацию об учителях.
+   * @param {Number} p_page номер страницы
+   * @param {Number} p_educations айди ученика
+  */
+  get_journal_teacher_list(p_page, p_educations) {
+    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/teacher/list?p_page=${p_page}&p_educations[]=${p_educations}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/teacher/list";
+    });
+  }
+
+  /**
    * Запрос на api/journal/person/related-person-list.
    * 
    * Возвращает информацию о ученике.
@@ -177,4 +214,4 @@ class dnevnik2 {
   } 
 }
 
-module.exports = dnevnik2
+module.exports = { dnevnik2 }
