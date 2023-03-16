@@ -3,14 +3,14 @@
     "axios": "^1.3.4"
   },
   "name": "spb_dnevnik",
-  "version": "1.1.0",
+  "version": "1.0.4",
   "description": "Client of dnevnik2.petersburgedu.ru, written on JS",
-  "main": "dnevnik2.js",
+  "main": "index.js",
   "author": "mikhaillav",
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mikhaillav/spb_dnevnik"
+    "url": "git+https://github.com/mikhaillav/SPB_Dnevnik2.git"
   },
   "keywords": [
     "spb",
@@ -18,7 +18,7 @@
     "spb_dnevnik"
   ],
   "bugs": {
-    "url": "https://github.com/mikhaillav/spb_dnevnik/issues"
+    "url": "https://github.com/mikhaillav/SPB_Dnevnik2/issues"
   },
-  "homepage": "https://github.com/mikhaillav/spb_dnevnik#readme"
+  "homepage": "https://github.com/mikhaillav/SPB_Dnevnik2#readme"
 }
