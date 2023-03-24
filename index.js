@@ -62,7 +62,7 @@ class dnevnik2 {
    * Возвращает информацию о ученике.
    * @param {Number} p_page номер страницы
   */
-  async get_journal_person_related_child_list(p_page) {
+  get_journal_person_related_child_list(p_page) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/person/related-child-list?p_page=${p_page}`,this.headers)
     .then(response => {
       return response.data.data
