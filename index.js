@@ -48,7 +48,8 @@ class dnevnik2 {
       _isEmpty: false
     })
     .then(response => {
-      fs.writeFileSync("token.txt", response.data.data.token)
+      this.headers['headers']['Cookie'] = 'X-JWT-Token=' + response.data.data.token
+      // fs.writeFileSync("token.txt", response.data.data.token)
     })
     .catch(error => {
       throw "Your password or email probably invalid. Or you try connect api too many times (wait a bit)."
@@ -61,8 +62,7 @@ class dnevnik2 {
    * Возвращает информацию о ученике.
    * @param {Number} p_page номер страницы
   */
-  get_journal_person_related_child_list(p_page) {
-    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
+  async get_journal_person_related_child_list(p_page) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/person/related-child-list?p_page=${p_page}`,this.headers)
     .then(response => {
       return response.data.data
@@ -81,7 +81,6 @@ class dnevnik2 {
    * @param {Number} p_educations айди ученика
   */
   get_journal_teacher_list(p_page, p_educations) {
-    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/teacher/list?p_page=${p_page}&p_educations[]=${p_educations}`,this.headers)
     .then(response => {
       return response.data.data
@@ -102,7 +101,6 @@ class dnevnik2 {
    * @param {Number} p_groups айди класса
   */
   get_journal_person_related_person_list(p_page, p_jurisdictions, p_institutions, p_groups) {
-    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/person/related-person-list?p_page=${p_page}&p_jurisdictions[]=${p_jurisdictions}&p_institutions[]=${p_institutions}&p_groups[]=${p_groups}`,this.headers)
     .then(response => {
       return response.data.data
@@ -122,7 +120,6 @@ class dnevnik2 {
    * @param {Number} p_institutions айди школы
   */
   get_journal_group_related_group_list(p_page, p_jurisdictions, p_institutions) {
-    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/group/related-group-list?p_page=${p_page}&p_jurisdictions[]=${p_jurisdictions}&p_institutions[]=${p_institutions}`,this.headers)
     .then(response => {
       return response.data.data
@@ -141,7 +138,6 @@ class dnevnik2 {
    * @param {Number} p_jurisdictions айди района
   */
   get_journal_institution_related_institution_list(p_page, p_jurisdictions) {
-    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/institution/related-institution-list?p_page=${p_page}&p_jurisdictions[]=${p_jurisdictions}`,this.headers)
     .then(response => {
       return response.data.data
@@ -159,7 +155,6 @@ class dnevnik2 {
    * @param {Number} p_page номер страницы
   */
   get_journal_institution_related_jurisdiction_list(p_page) {
-    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/institution/related-jurisdiction-list?p_page=${p_page}`,this.headers)
     .then(response => {
       return response.data.data
@@ -180,7 +175,6 @@ class dnevnik2 {
    * @param {Number} p_educations айди ученика
   */
   get_journal_lesson_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations) {
-    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/lesson/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations[]=${p_educations}`,this.headers)
     .then(response => {
       return response.data.data
@@ -202,7 +196,6 @@ class dnevnik2 {
    * @param {Number} p_page номер страницы
   */
   get_journal_estimate_table(p_educations, p_date_from, p_date_to, p_limit = 1, p_page = 1) {
-    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + fs.readFileSync("token.txt", 'utf8')
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/estimate/table?p_educations[]=${p_educations}&p_date_from=${p_date_from}&p_date_to=${p_date_to}&p_limit=${p_limit}&p_page=${p_page}`,this.headers)
     .then(response => {
       return response.data.data
