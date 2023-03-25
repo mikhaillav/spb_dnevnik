@@ -10,7 +10,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/spb_dnevnik)](https://npm-stat.com/charts.html?package=spb_dnevnik)
 
 - [Установка](#установка)
-- [Документация по апи дневника](https://mikhaillav.github.io/dnevnik2_docs/)
+- [Документация по апи дневника(WIP)](https://mikhaillav.github.io/dnevnik2_docs/)
 - [Примеры](#примеры)
 - [Спасибо](#спасибо)
 - [Лицензия](#лицензия)
