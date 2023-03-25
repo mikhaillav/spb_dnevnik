@@ -5,8 +5,6 @@
 */
 
 const axios = require('axios')
-const fs = require('fs')
-
 
 /** Класс дневника */
 class dnevnik2 {
@@ -49,12 +47,38 @@ class dnevnik2 {
     })
     .then(response => {
       this.headers['headers']['Cookie'] = 'X-JWT-Token=' + response.data.data.token
-      // fs.writeFileSync("token.txt", response.data.data.token)
     })
     .catch(error => {
       throw "Your password or email probably invalid. Or you try connect api too many times (wait a bit)."
     });
   }
+  /**
+   * Вход в дневник, через токен.
+   * @param {String} email 
+   * @param {String} password 
+  */
+  async login(token){
+    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + token
+  }
+
+  /**
+   * Запрос на api/group/group/get-list-period.
+   * 
+   * Возвращает информацию о четверти/семестрах.
+   * @param {Number} p_group_ids айди класса
+   * @param {Number} p_page номер страницы
+   * 
+  */
+  get_group_group_get_list_period(p_group_ids, p_page) {
+      return axios.get(`https://dnevnik2.petersburgedu.ru/api/group/group/get-list-period?p_group_ids[]=${p_group_ids}&p_page=${p_page}`,this.headers)
+      .then(response => {
+        return response.data.data
+      })
+      .catch(error => {
+        console.log(error)
+        throw "Something went wrong by getting api/group/group/get-list-period";
+      });
+    }
 
   /**
    * Запрос на api/journal/person/related-child-list.
