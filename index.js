@@ -57,7 +57,7 @@ class dnevnik2 {
    * @param {String} email 
    * @param {String} password 
   */
-  async login(token){
+  async login_by_token(token){
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + token
   }
 
