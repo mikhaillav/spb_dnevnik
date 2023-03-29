@@ -105,7 +105,7 @@ class glolime {
     getBalance_frameData(frameData){
         return axios.get(`https://school.glolime.ru/api/netrika/account/?${frameData}`, { responseType: 'arraybuffer' })
         .then(response => {
-            data = iconv.decode(response.data, 'windows-1251');
+            let data = iconv.decode(response.data, 'windows-1251');
 
             const balance = cheerio.load(data);
             let str = balance('.document-list').find(balance('tbody')).find(balance('.textalign-right'))
