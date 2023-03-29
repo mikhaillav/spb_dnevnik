@@ -37,7 +37,7 @@ class glolime {
      * @param {String} zsign
     */
     transferMoney(sourceAccount, destinationAccount, sum, merch_gmt, merch_url, nonce, suid, timestamp, token, zsign){
-        return axios.get(`https://school.glolime.ru/api/netrika/transfer/create/?sourceAccount=${sourceAccount}&destinationAccount=${destinationAccount}&sum=${sum}&merch_gmt=${merch_gmt}&merch_url=${merch_url}&nonce=${nonce}&suid=${suid}&timestamp=${timestamp}&token=${token}&zsign=${zsign}`,{ responseType: 'arraybuffer' })
+        return axios.get(`https://school.glolime.ru/api/netrika/transfer/create/?sourceAccount=${sourceAccount}&destinationAccount=${destinationAccount}&sum=${sum}&merch_gmt=${merch_gmt}&merch_url=${merch_url}&nonce=${nonce}&suid=${suid}&timestamp=${timestamp}&token=${token}&zsign=${zsign}`)
         .then(response => {    })
         .catch(error => {
             console.log(error)
@@ -52,7 +52,7 @@ class glolime {
      * @param {String} frameData строка query-запроса, но в апи называется frameData  
     */
     transferMoney_frameData(frameData){
-        return axios.get(`https://school.glolime.ru/api/netrika/transfer/create/?${frameData}`,{ responseType: 'arraybuffer' })
+        return axios.get(`https://school.glolime.ru/api/netrika/transfer/create/?${frameData}`)
         .then(response => {    })
         .catch(error => {
             console.log(error)
