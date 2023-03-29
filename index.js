@@ -5,6 +5,7 @@
 */
 
 const axios = require('axios')
+const { glolime } = require('./glolime')
 
 /** Класс дневника */
 class dnevnik2 {
@@ -251,4 +252,4 @@ class dnevnik2 {
   } 
 }
 
-module.exports = { dnevnik2 }
+module.exports = { dnevnik2, glolime }
