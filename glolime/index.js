@@ -11,14 +11,14 @@ const iconv = require('iconv-lite');
 class glolime {
 
     /**
-     * Запрос на  school.glolime.ru/acquiring/searchbypaymentnumber/acquier/create/
+     * Запрос на school.glolime.ru/acquiring/searchbypaymentnumber/acquier/
      * 
      * Возвращает ссылку на оплату 
      * @param {Number} type 1 - горячее, 2 - буфет
      * @param {Number} usernumber 
     */
     addMoney(type, usernumber){
-        return `https://https://school.glolime.ru/acquiring/searchbypaymentnumber/acquier/?type=${type}&usernumber=${usernumber}`
+        return `https://school.glolime.ru/acquiring/searchbypaymentnumber/acquier/?type=${type}&usernumber=${usernumber}`
     }
 
     /**
