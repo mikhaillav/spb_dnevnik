@@ -1,6 +1,6 @@
 <h1 align="center">
    <b>
-        <a/>spb_dnevnik</a><br>
+        <a>spb_dnevnik</a><br>
     </b>
 </h1>
 
@@ -9,19 +9,36 @@
 [![npm version](https://img.shields.io/npm/v/spb_dnevnik)](https://www.npmjs.org/package/spb_dnevnik)
 [![npm downloads](https://img.shields.io/npm/dm/spb_dnevnik)](https://npm-stat.com/charts.html?package=spb_dnevnik)
 
+- [Возможности](#возможности)
 - [Установка](#установка)
 - [Документация по апи дневника(WIP)](https://mikhaillav.github.io/dnevnik2_docs/)
 - [Примеры](#примеры)
 - [Спасибо](#спасибо)
 - [Лицензия](#лицензия)
 
+## Возможности
+   - Функции названы именем апи, к которому они ведут
+   - Каждый метод задокументирован по стандартам JSdoc
+   - Поддержка платежки glolime (оплата еды в столовой)
+   
 ## Установка
 ``` 
 npm i spb_dnevnik
 ```
-
 ## Примеры
-comming soon 
+```js
+const { dnevnik2 } = require("spb_dnevnik"); // импорт 
+
+//получение айди ученика
+async function getEducationID(){
+   await dnevnik.login(email, password) // логин в дневнике
+   childs = await dnevnik.get_journal_person_related_child_list(1) // получение списка детей (если родитель) и самого себя (если ученик)
+   return childs.items[0].educations[0].education_id // возвращаем значение функции
+}
+
+console.log(getEducationID()) // вернет ваш айди
+
+```
 
 ## Спасибо
 Отдельное спасибо этим ребятам

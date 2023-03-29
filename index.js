@@ -5,6 +5,7 @@
 */
 
 const axios = require('axios')
+const { glolime } = require('./glolime')
 
 /** Класс дневника */
 class dnevnik2 {
@@ -57,8 +58,28 @@ class dnevnik2 {
    * @param {String} email 
    * @param {String} password 
   */
-  async login_by_token(token){
+  async login_token(token){
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + token
+  }
+
+  /**
+   * Запрос на api/journal/fps/list.
+   * 
+   * Возвращает информацию о питании.
+   * @param {Number} p_limit лимит для выписок как я понял, но это не точно
+   * @param {Number} p_page номер страницы
+   * @param {Number} p_education айди ученика
+   * 
+  */
+  get_journal_fps_list(p_limit, p_page, p_education) {
+      return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/fps/list?p_limit=${p_limit}&p_page=${p_page}&p_education=${p_education}`,this.headers)
+      .then(response => {
+        return response.data.data
+      })
+      .catch(error => {
+        console.log(error)
+        throw "Something went wrong by getting api/journal/fps/list";
+      });
   }
 
   /**
@@ -78,7 +99,7 @@ class dnevnik2 {
         console.log(error)
         throw "Something went wrong by getting api/group/group/get-list-period";
       });
-    }
+  }
 
   /**
    * Запрос на api/journal/person/related-child-list.
@@ -231,4 +252,4 @@ class dnevnik2 {
   } 
 }
 
-module.exports = { dnevnik2 }
+module.exports = { dnevnik2, glolime }
