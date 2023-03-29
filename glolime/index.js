@@ -17,6 +17,29 @@ class glolime {
      * @param {Number} type 1 - горячее, 2 - буфет
      * @param {Number} usernumber 
     */
+    getNumberID_frameData(frameData){
+        return axios.get(`https://school.glolime.ru/api/netrika/userinfo/?${frameData}`,{ responseType: 'arraybuffer' })
+        .then(response => {    
+            data = iconv.decode(response.data, 'windows-1251');
+
+            const balance = cheerio.load(data);
+            let str = balance('.document-list').find(balance('td'))[0].children[0].data
+            
+            return str  
+        })
+        .catch(error => {
+            console.log(error)
+            throw "Something went wrong by getting school.glolime.ru/api/netrika/transfer/create/";
+        });
+    }
+
+    /**
+     * Запрос на school.glolime.ru/acquiring/searchbypaymentnumber/acquier/
+     * 
+     * Возвращает ссылку на оплату 
+     * @param {Number} type 1 - горячее, 2 - буфет
+     * @param {Number} usernumber 
+    */
     addMoney(type, usernumber){
         return `https://school.glolime.ru/acquiring/searchbypaymentnumber/acquier/?type=${type}&usernumber=${usernumber}`
     }
