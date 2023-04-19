@@ -14,7 +14,6 @@ class glolime {
      * Запрос на school.glolime.ru/api/netrika/userinfo/
      * 
      * Возвращает номер счета
-     * 
      * @param {Number} merch_gmt 
      * @param {String} merch_url 
      * @param {String} nonce 
