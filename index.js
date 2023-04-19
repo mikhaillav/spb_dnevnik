@@ -62,6 +62,27 @@ class dnevnik2 {
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + token
   }
 
+  
+  /**
+   * Запрос на api/journal/schedule/list-by-education.
+   * 
+   * Возвращает информацю о расписании за период.
+   * @param {Number} p_page номер страницы
+   * @param {String} p_datetime_from дата и время начала периода (DD.MM.YYYY HH:MM:SS)
+   * @param {String} p_datetime_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
+   * @param {Number} p_educations айди ученика
+  */
+  get_journal_schedule_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations ) {
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/schedule/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations[]=${p_educations}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/schedule/list-by-education";
+    });
+  } 
+
   /**
    * Запрос на api/journal/fps/list.
    * 
@@ -235,8 +256,8 @@ class dnevnik2 {
    * 
    * Возвращает информацю об оценках за период.
    * @param {Number} p_educations айди ученика
-   * @param {String} p_date_from дата и время начала периода (DD.MM.YYYY HH:MM:SS)
-   * @param {String} p_date_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
+   * @param {String} p_date_from дата и время начала периода (DD.MM.YYYY)
+   * @param {String} p_date_to дата и время конца периода (DD.MM.YYYY)
    * @param {Number} p_limit_ лимит оценок
    * @param {Number} p_page номер страницы
   */

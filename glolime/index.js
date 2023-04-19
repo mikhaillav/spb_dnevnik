@@ -47,7 +47,7 @@ class glolime {
     getAccountID_frameData(frameData){
         return axios.get(`https://school.glolime.ru/api/netrika/userinfo/?${frameData}`,{ responseType: 'arraybuffer' })
         .then(response => {    
-            data = iconv.decode(response.data, 'windows-1251');
+            let data = iconv.decode(response.data, 'windows-1251');
 
             const root = parse.parse(data)
             const str = Number(root.querySelectorAll("td")[0].childNodes[0]._rawText)
@@ -126,7 +126,7 @@ class glolime {
     getBalance(merch_gmt, merch_url, nonce, suid, timestamp, token, zsign){
         return axios.get(`https://school.glolime.ru/api/netrika/account/?merch_gmt=${merch_gmt}&merch_url=${merch_url}&nonce=${nonce}&suid=${suid}&timestamp=${timestamp}&token=${token}&zsign=${zsign}`,{ responseType: 'arraybuffer' })
         .then(response => {
-            data = iconv.decode(response.data, 'windows-1251');
+            let data = iconv.decode(response.data, 'windows-1251');
 
             const root = parse.parse(data)
             const str = root.querySelectorAll("tbody")[0]
@@ -155,7 +155,7 @@ class glolime {
     getBalance_frameData(frameData){
         return axios.get(`https://school.glolime.ru/api/netrika/account/?${frameData}`, { responseType: 'arraybuffer' })
         .then(response => {
-            data = iconv.decode(response.data, 'windows-1251');
+            let data = iconv.decode(response.data, 'windows-1251');
 
             const root = parse.parse(data)
             const str = root.querySelectorAll("tbody")[0]
