@@ -41,8 +41,7 @@ class dnevnik2 {
   }
   /**
    * Вход в дневник, через токен.
-   * @param {String} email 
-   * @param {String} password 
+   * @param {String} token 
   */
   async login_token(token){
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + token
