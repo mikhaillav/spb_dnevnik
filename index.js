@@ -15,17 +15,6 @@ class dnevnik2 {
   constructor() {
     this.headers ={ 
       headers : {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:96.0) Gecko/20100101 Firefox/96.0",
-        "Accept": "application/json, text/plain, */*",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Access-Control-Allow-Origin": "*",
-        "X-Requested-With": "XMLHttpRequest",
-        "Content-Type": "text/plain",
-        "Connection": "keep-alive",
-        "Sec-Fetch-Dest": "empty",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Site": "same-origin",
         "Cookie": ""
       }
     }
