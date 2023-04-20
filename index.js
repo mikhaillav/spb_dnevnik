@@ -51,6 +51,21 @@ class dnevnik2 {
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + token
   }
 
+  /**
+   * Запрос на api/user/permission/get.
+   * 
+   * Возвращает коды разрешений (привилегий).
+  */
+    get_user_permission_get() {
+      return axios.get(`https://dnevnik2.petersburgedu.ru/api/user/permission/get`,this.headers)
+      .then(response => {
+        return response.data.data
+      })
+      .catch(error => {
+        console.log(error)
+        throw "Something went wrong by getting api/user/permission/get";
+      });
+    } 
   
   /**
    * Запрос на api/journal/schedule/list-by-education.
