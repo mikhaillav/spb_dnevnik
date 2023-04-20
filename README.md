@@ -27,18 +27,20 @@ npm i spb_dnevnik
 ```
 ## Примеры
 ```js
-const { dnevnik2 } = require("spb_dnevnik"); // импорт 
+const { dnevnik2 } = require("spb_dnevnik")
 
 //получение айди ученика
 async function getEducationID(){
    await dnevnik.login(email, password) // логин в дневнике
-   childs = await dnevnik.get_journal_person_related_child_list(1) // получение списка детей (если родитель) и самого себя (если ученик)
-   return childs.items[0].educations[0].education_id // возвращаем значение функции
+   let childs = await dnevnik.get_journal_person_related_child_list(1) // получение списка детей
+   return childs.items[0].educations[0].education_id // возвращаем значение айди у первого ученика
 }
 
 console.log(getEducationID()) // вернет ваш айди
 
 ```
+
+[больше примеров](examples/)
 
 ## Спасибо
 Отдельное спасибо этим ребятам
