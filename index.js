@@ -24,7 +24,7 @@ class dnevnik2 {
    * @param {String} email 
    * @param {String} password 
   */
-  async login(email,password){
+  async login(email, password){
     await axios.post('https://dnevnik2.petersburgedu.ru/api/user/auth/login',{
       type: "email",
       login: email,
@@ -107,7 +107,7 @@ class dnevnik2 {
    * @param {String} p_datetime_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
    * @param {Number} p_educations айди ученика
   */
-  get_journal_schedule_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations ) {
+  get_journal_schedule_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/schedule/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations[]=${p_educations}`,this.headers)
     .then(response => {
       return response.data.data
