@@ -48,20 +48,55 @@ class dnevnik2 {
   }
 
   /**
+   * Запрос на api/cms/banner/list.
+   * 
+   * Возвращает информационные ресурсы.
+   * @param {Number} p_page
+  */
+  get_cms_banner_list(p_page) {
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/cms/banner/list?p_page=${p_page}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/cms/banner/list";
+    });
+  } 
+
+
+  /**
+   * Запрос на api/journal/announcement/list-open.
+   * 
+   * Возвращает оповещения.
+   * @param {Number} p_page
+  */
+  get_journal_announcement_list_open(p_page) {
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/announcement/list-open?p_page=${p_page}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/announcement/list-open";
+    });
+  } 
+
+  /**
    * Запрос на api/user/permission/get.
    * 
-   * Возвращает коды разрешений (привилегий).
+   * Возвращает информацию о разрешениях.
   */
-    get_user_permission_get() {
-      return axios.get(`https://dnevnik2.petersburgedu.ru/api/user/permission/get`,this.headers)
-      .then(response => {
-        return response.data.data
-      })
-      .catch(error => {
-        console.log(error)
-        throw "Something went wrong by getting api/user/permission/get";
-      });
-    } 
+  get_user_permission_get() {
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/user/permission/get`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/user/permission/get";
+    });
+  } 
   
   /**
    * Запрос на api/journal/schedule/list-by-education.
@@ -125,7 +160,7 @@ class dnevnik2 {
   /**
    * Запрос на api/journal/person/related-child-list.
    * 
-   * Возвращает информацию о ученике.
+   * Возвращает информацию об ученике.
    * @param {Number} p_page номер страницы
   */
   get_journal_person_related_child_list(p_page) {
