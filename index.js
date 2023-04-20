@@ -9,9 +9,6 @@ const { glolime } = require('./glolime')
 
 /** Класс дневника */
 class dnevnik2 {
-  /**
-   * Конструктор класса.
-  */
   constructor() {
     this.headers ={ 
       headers : {
