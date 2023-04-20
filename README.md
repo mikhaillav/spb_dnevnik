@@ -40,7 +40,7 @@ console.log(getEducationID()) // вернет ваш айди
 
 ```
 
-[больше примеров](examples/getBalanceExample.js)
+[больше примеров](examples/)
 
 ## Спасибо
 Отдельное спасибо этим ребятам
