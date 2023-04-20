@@ -39,7 +39,7 @@ class dnevnik2 {
       throw "Your password or email probably invalid. Or you try connect api too many times (wait a bit)."
     });
   }
-  
+
   /**
    * Вход в дневник, через токен.
    * @param {String} token 
@@ -60,7 +60,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/cms/banner/list";
     });
   } 
@@ -77,7 +76,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/journal/announcement/list-open";
     });
   } 
@@ -93,7 +91,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/user/permission/get";
     });
   } 
@@ -113,7 +110,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/journal/schedule/list-by-education";
     });
   } 
@@ -133,7 +129,6 @@ class dnevnik2 {
         return response.data.data
       })
       .catch(error => {
-        console.log(error)
         throw "Something went wrong by getting api/journal/fps/list";
       });
   }
@@ -152,7 +147,6 @@ class dnevnik2 {
         return response.data.data
       })
       .catch(error => {
-        console.log(error)
         throw "Something went wrong by getting api/group/group/get-list-period";
       });
   }
@@ -169,7 +163,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/journal/person/related-child-list";
     });
   }
@@ -187,7 +180,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/journal/teacher/list";
     });
   }
@@ -207,7 +199,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/journal/person/related-person-list";
     });
   }
@@ -226,7 +217,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/journal/group/related-group-list";
     });
   }
@@ -244,7 +234,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/journal/institution/related-institution-list";
     });
   }
@@ -261,7 +250,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/journal/institution/related-jurisdiction-list";
     });
   }
@@ -281,7 +269,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/journal/lesson/list-by-education";
     });
   }
@@ -302,7 +289,6 @@ class dnevnik2 {
       return response.data.data
     })
     .catch(error => {
-      console.log(error)
       throw "Something went wrong by getting api/journal/estimate/table";
     });
   } 
