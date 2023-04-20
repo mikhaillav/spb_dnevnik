@@ -39,6 +39,7 @@ class dnevnik2 {
       throw "Your password or email probably invalid. Or you try connect api too many times (wait a bit)."
     });
   }
+  
   /**
    * Вход в дневник, через токен.
    * @param {String} token 
@@ -63,7 +64,6 @@ class dnevnik2 {
       throw "Something went wrong by getting api/cms/banner/list";
     });
   } 
-
 
   /**
    * Запрос на api/journal/announcement/list-open.
