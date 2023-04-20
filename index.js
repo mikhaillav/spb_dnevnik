@@ -9,9 +9,6 @@ const { glolime } = require('./glolime')
 
 /** Класс дневника */
 class dnevnik2 {
-  /**
-   * Конструктор класса.
-  */
   constructor() {
     this.headers ={ 
       headers : {
@@ -27,7 +24,7 @@ class dnevnik2 {
    * @param {String} email 
    * @param {String} password 
   */
-  async login(email,password){
+  async login(email, password){
     await axios.post('https://dnevnik2.petersburgedu.ru/api/user/auth/login',{
       type: "email",
       login: email,
@@ -42,15 +39,64 @@ class dnevnik2 {
       throw "Your password or email probably invalid. Or you try connect api too many times (wait a bit)."
     });
   }
+  
   /**
    * Вход в дневник, через токен.
-   * @param {String} email 
-   * @param {String} password 
+   * @param {String} token 
   */
   async login_token(token){
     this.headers['headers']['Cookie'] = 'X-JWT-Token=' + token
   }
 
+  /**
+   * Запрос на api/cms/banner/list.
+   * 
+   * Возвращает информационные ресурсы.
+   * @param {Number} p_page
+  */
+  get_cms_banner_list(p_page) {
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/cms/banner/list?p_page=${p_page}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/cms/banner/list";
+    });
+  } 
+
+  /**
+   * Запрос на api/journal/announcement/list-open.
+   * 
+   * Возвращает оповещения.
+   * @param {Number} p_page
+  */
+  get_journal_announcement_list_open(p_page) {
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/announcement/list-open?p_page=${p_page}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/journal/announcement/list-open";
+    });
+  } 
+
+  /**
+   * Запрос на api/user/permission/get.
+   * 
+   * Возвращает информацию о разрешениях.
+  */
+  get_user_permission_get() {
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/user/permission/get`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      console.log(error)
+      throw "Something went wrong by getting api/user/permission/get";
+    });
+  } 
   
   /**
    * Запрос на api/journal/schedule/list-by-education.
@@ -61,7 +107,7 @@ class dnevnik2 {
    * @param {String} p_datetime_to дата и время конца периода (DD.MM.YYYY HH:MM:SS)
    * @param {Number} p_educations айди ученика
   */
-  get_journal_schedule_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations ) {
+  get_journal_schedule_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/schedule/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations[]=${p_educations}`,this.headers)
     .then(response => {
       return response.data.data
@@ -114,7 +160,7 @@ class dnevnik2 {
   /**
    * Запрос на api/journal/person/related-child-list.
    * 
-   * Возвращает информацию о ученике.
+   * Возвращает информацию об ученике.
    * @param {Number} p_page номер страницы
   */
   get_journal_person_related_child_list(p_page) {
