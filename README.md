@@ -40,6 +40,8 @@ console.log(getEducationID()) // вернет ваш айди
 
 ```
 
+[больше примеров](examples/getBalanceExample.js)
+
 ## Спасибо
 Отдельное спасибо этим ребятам
 - https://github.com/romanrakhlin/dnevnik-spb за идею с ботом
