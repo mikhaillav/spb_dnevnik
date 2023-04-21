@@ -49,6 +49,50 @@ class dnevnik2 {
   }
 
   /**
+   * Запрос на указанное апи с указанной query-строкой.
+   * 
+   * Возвращает какую-либо информацию.
+   * @param {String} api путь до апи 
+   * @param {String} [query] query-строка 
+  */
+  get_api(api = "", query = "") {
+    if(query != "" && !query.startsWith("?")){
+      query = "?" + query
+    }
+    if(!api.startsWith("api/")){
+      api = "api/" + api
+    }
+
+    return axios.get(`https://dnevnik2.petersburgedu.ru/${api}/${query}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      throw `Something went wrong by getting api/${api}`;
+    });
+  } 
+
+  /**
+   * Запрос на api/journal/subject/list-studied.
+   * 
+   * Возвращает информацию об изучаемых предметах.
+   * @param {Number} p_limit лимит
+   * @param {Number} p_page номер страницы
+   * @param {Number} p_educations айди ученика
+   * @param {Number} p_groups айди класса
+   * @param {Number} [p_periods] период
+  */
+  get_api_journal_subject_list_studied(p_limit, p_page, p_educations, p_groups, p_periods) {
+    return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/subject/list-studied?p_limit=${p_limit}&p_page=${p_page}&p_educations%5B%5D=${p_educations}&p_groups%5B%5D=${p_groups}&p_periods%5B%5D=${p_periods}`,this.headers)
+    .then(response => {
+      return response.data.data
+    })
+    .catch(error => {
+      throw "Something went wrong by getting api/journal/subject/list-studied";
+    });
+  } 
+
+  /**
    * Запрос на api/journal/person/get-classroom-teacher.
    * 
    * Возвращает информацию о классном руководителе.
