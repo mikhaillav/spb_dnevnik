@@ -10,17 +10,17 @@
 [![npm downloads](https://img.shields.io/npm/dm/spb_dnevnik)](https://npm-stat.com/charts.html?package=spb_dnevnik)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/635c7a61ac05477793a254cbb75b5fde)](https://app.codacy.com/gh/mikhaillav/spb_dnevnik/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
-- [Возможности](#возможности)
-- [Установка](#установка)
-- [Документация по апи дневника(WIP)](https://mikhaillav.github.io/dnevnik2_docs/)
-- [Примеры](#примеры)
-- [Спасибо](#спасибо)
-- [Лицензия](#лицензия)
+-   [Возможности](#возможности)
+-   [Установка](#установка)
+-   [Документация по апи дневника(WIP)](https://mikhaillav.github.io/dnevnik2_docs/)
+-   [Примеры](#примеры)
+-   [Спасибо](#спасибо)
+-   [Лицензия](#лицензия)
 
 ## Возможности
-   - Функции названы именем апи, к которому они ведут
-   - Каждый метод задокументирован по стандартам JSdoc
-   - Поддержка платежки glolime (оплата еды в столовой)
+-   Функции названы именем апи, к которому они ведут
+-   Каждый метод задокументирован по стандартам JSdoc
+-   Поддержка платежки glolime (оплата еды в столовой)
    
 ## Установка
 ``` 
@@ -45,8 +45,8 @@ console.log(getEducationID()) // вернет ваш айди
 
 ## Спасибо
 Отдельное спасибо этим ребятам
-- https://github.com/romanrakhlin/dnevnik-spb за идею с ботом
-- https://github.com/newtover/dnevnik за примеры авторизации и использования апи
+-   https://github.com/romanrakhlin/dnevnik-spb за идею с ботом
+-   https://github.com/newtover/dnevnik за примеры авторизации и использования апи
 
 ## Лицензия
 
