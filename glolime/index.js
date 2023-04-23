@@ -21,28 +21,28 @@ class glolime {
      * @param {Number} timestamp 
      * @param {String} token
      * @param {String} zsign
-    */
-        getAccountID(frameData){
-            return axios.get(`https://school.glolime.ru/api/netrika/userinfo/?${frameData}`,{ responseType: 'arraybuffer' })
-            .then(response => {    
-                data = iconv.decode(response.data, 'windows-1251');
-    
-                const root = parse.parse(data);
-                const str = Number(root.querySelectorAll("td")[0].childNodes[0]._rawText);
-    
-                return str;
-            })
-            .catch(() => {
-                throw "Something went wrong by getting school.glolime.ru/api/netrika/userinfo/ via frameData";
-            });
-        }
+     */
+    getAccountID(frameData){
+        return axios.get(`https://school.glolime.ru/api/netrika/userinfo/?${frameData}`,{ responseType: 'arraybuffer' })
+        .then(response => {    
+            data = iconv.decode(response.data, 'windows-1251');
+
+            const root = parse.parse(data);
+            const str = Number(root.querySelectorAll("td")[0].childNodes[0]._rawText);
+
+            return str;
+        })
+        .catch(() => {
+            throw "Something went wrong by getting school.glolime.ru/api/netrika/userinfo/ via frameData";
+        });
+    }
 
     /**
      * Запрос на school.glolime.ru/api/netrika/userinfo/
      * 
      * Возвращает номер счета
      * @param {String} frameData 
-    */
+     */
     getAccountID_frameData(frameData){
         return axios.get(`https://school.glolime.ru/api/netrika/userinfo/?${frameData}`,{ responseType: 'arraybuffer' })
         .then(response => {    
@@ -65,7 +65,7 @@ class glolime {
      * Возвращает ссылку на оплату 
      * @param {Number} type 1 - горячее, 2 - буфет
      * @param {Number} usernumber 
-    */
+     */
     getAddMoneyString(type, usernumber){
         return `https://school.glolime.ru/acquiring/searchbypaymentnumber/acquier/?type=${type}&usernumber=${usernumber}`;
     }
@@ -84,7 +84,7 @@ class glolime {
      * @param {Number} timestamp 
      * @param {String} token
      * @param {String} zsign
-    */
+     */
     transferMoney(sourceAccount, destinationAccount, sum, merch_gmt, merch_url, nonce, suid, timestamp, token, zsign){
         return axios.get(`https://school.glolime.ru/api/netrika/transfer/create/?sourceAccount=${sourceAccount}&destinationAccount=${destinationAccount}&sum=${sum}&merch_gmt=${merch_gmt}&merch_url=${merch_url}&nonce=${nonce}&suid=${suid}&timestamp=${timestamp}&token=${token}&zsign=${zsign}`)
         .then(() => {    })
@@ -98,7 +98,7 @@ class glolime {
      * 
      * Дает возможность сделать перевод со счета на счет
      * @param {String} frameData строка query-запроса, но в апи называется frameData  
-    */
+     */
     transferMoney_frameData(frameData){
         return axios.get(`https://school.glolime.ru/api/netrika/transfer/create/?${frameData}`)
         .then(response => {    })
@@ -119,7 +119,7 @@ class glolime {
      * @param {Number} timestamp 
      * @param {String} token
      * @param {String} zsign
-    */
+     */
     getBalance(merch_gmt, merch_url, nonce, suid, timestamp, token, zsign){
         return axios.get(`https://school.glolime.ru/api/netrika/account/?merch_gmt=${merch_gmt}&merch_url=${merch_url}&nonce=${nonce}&suid=${suid}&timestamp=${timestamp}&token=${token}&zsign=${zsign}`,{ responseType: 'arraybuffer' })
         .then(response => {
@@ -147,7 +147,7 @@ class glolime {
      * 
      * Возвращает информацию о балансе питания.
      * @param {String} frameData строка query-запроса, но в апи называется frameData  
-    */
+     */
     getBalance_frameData(frameData){
         return axios.get(`https://school.glolime.ru/api/netrika/account/?${frameData}`, { responseType: 'arraybuffer' })
         .then(response => {
