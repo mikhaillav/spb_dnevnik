@@ -8,6 +8,7 @@
 
 [![npm version](https://img.shields.io/npm/v/spb_dnevnik)](https://www.npmjs.org/package/spb_dnevnik)
 [![npm downloads](https://img.shields.io/npm/dm/spb_dnevnik)](https://npm-stat.com/charts.html?package=spb_dnevnik)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/635c7a61ac05477793a254cbb75b5fde)](https://app.codacy.com/gh/mikhaillav/spb_dnevnik/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 - [Возможности](#возможности)
 - [Установка](#установка)
