@@ -4,8 +4,8 @@
  * @author mikhaillav <github.com/mikhaillav>
 */
 
-const axios = require('axios')
-const { glolime } = require('./glolime')
+const axios = require("axios")
+const { glolime } = require("./glolime")
 
 /** Класс дневника */
 class dnevnik2 {
@@ -25,7 +25,7 @@ class dnevnik2 {
    * @param {String} password 
   */
   async login(email, password){
-    await axios.post('https://dnevnik2.petersburgedu.ru/api/user/auth/login',{
+    await axios.post("https://dnevnik2.petersburgedu.ru/api/user/auth/login",{
       type: "email",
       login: email,
       password: password,
@@ -33,9 +33,9 @@ class dnevnik2 {
       _isEmpty: false
     })
     .then(response => {
-      this.headers['headers']['Cookie'] = 'X-JWT-Token=' + response.data.data.token
+      this.headers["headers"]["Cookie"] = "X-JWT-Token=" + response.data.data.token
     })
-    .catch(error => {
+    .catch(() => {
       throw "Your password or email probably invalid. Or you try connect api too many times (wait a bit)."
     });
   }
@@ -45,7 +45,7 @@ class dnevnik2 {
    * @param {String} token 
   */
   async login_token(token){
-    this.headers['headers']['Cookie'] = 'X-JWT-Token=' + token
+    this.headers["headers"]["Cookie"] = "X-JWT-Token=" + token;
   }
 
   /**
@@ -57,17 +57,17 @@ class dnevnik2 {
   */
   get_api(api = "", query = "") {
     if(query != "" && !query.startsWith("?")){
-      query = "?" + query
+      query = "?" + query;
     }
     if(!api.startsWith("api/")){
-      api = "api/" + api
+      api = "api/" + api;
     }
 
     return axios.get(`https://dnevnik2.petersburgedu.ru/${api}/${query}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw `Something went wrong by getting api/${api}`;
     });
   } 
@@ -85,9 +85,9 @@ class dnevnik2 {
   get_api_journal_subject_list_studied(p_limit, p_page, p_educations, p_groups, p_periods) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/subject/list-studied?p_limit=${p_limit}&p_page=${p_page}&p_educations%5B%5D=${p_educations}&p_groups%5B%5D=${p_groups}&p_periods%5B%5D=${p_periods}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/subject/list-studied";
     });
   } 
@@ -101,9 +101,9 @@ class dnevnik2 {
   get_journal_person_get_classroom_teacher(p_groups) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/person/get-classroom-teacher/${p_groups}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/person/get-classroom-teacher";
     });
   } 
@@ -117,9 +117,9 @@ class dnevnik2 {
   get_cms_banner_list(p_page) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/cms/banner/list?p_page=${p_page}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/cms/banner/list";
     });
   } 
@@ -133,9 +133,9 @@ class dnevnik2 {
   get_journal_announcement_list_open(p_page) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/announcement/list-open?p_page=${p_page}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/announcement/list-open";
     });
   } 
@@ -148,9 +148,9 @@ class dnevnik2 {
   get_user_permission_get() {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/user/permission/get`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/user/permission/get";
     });
   } 
@@ -167,9 +167,9 @@ class dnevnik2 {
   get_journal_schedule_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/schedule/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations[]=${p_educations}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/schedule/list-by-education";
     });
   } 
@@ -186,9 +186,9 @@ class dnevnik2 {
   get_journal_fps_list(p_limit, p_page, p_education) {
       return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/fps/list?p_limit=${p_limit}&p_page=${p_page}&p_education=${p_education}`,this.headers)
       .then(response => {
-        return response.data.data
+        return response.data.data;
       })
-      .catch(error => {
+      .catch(() => {
         throw "Something went wrong by getting api/journal/fps/list";
       });
   }
@@ -204,9 +204,9 @@ class dnevnik2 {
   get_group_group_get_list_period(p_group_ids, p_page) {
       return axios.get(`https://dnevnik2.petersburgedu.ru/api/group/group/get-list-period?p_group_ids[]=${p_group_ids}&p_page=${p_page}`,this.headers)
       .then(response => {
-        return response.data.data
+        return response.data.data;
       })
-      .catch(error => {
+      .catch(() => {
         throw "Something went wrong by getting api/group/group/get-list-period";
       });
   }
@@ -220,9 +220,9 @@ class dnevnik2 {
   get_journal_person_related_child_list(p_page) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/person/related-child-list?p_page=${p_page}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/person/related-child-list";
     });
   }
@@ -237,9 +237,9 @@ class dnevnik2 {
   get_journal_teacher_list(p_page, p_educations) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/teacher/list?p_page=${p_page}&p_educations[]=${p_educations}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/teacher/list";
     });
   }
@@ -256,9 +256,9 @@ class dnevnik2 {
   get_journal_person_related_person_list(p_page, p_jurisdictions, p_institutions, p_groups) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/person/related-person-list?p_page=${p_page}&p_jurisdictions[]=${p_jurisdictions}&p_institutions[]=${p_institutions}&p_groups[]=${p_groups}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/person/related-person-list";
     });
   }
@@ -274,9 +274,9 @@ class dnevnik2 {
   get_journal_group_related_group_list(p_page, p_jurisdictions, p_institutions) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/group/related-group-list?p_page=${p_page}&p_jurisdictions[]=${p_jurisdictions}&p_institutions[]=${p_institutions}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/group/related-group-list";
     });
   }
@@ -291,9 +291,9 @@ class dnevnik2 {
   get_journal_institution_related_institution_list(p_page, p_jurisdictions) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/institution/related-institution-list?p_page=${p_page}&p_jurisdictions[]=${p_jurisdictions}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/institution/related-institution-list";
     });
   }
@@ -307,9 +307,9 @@ class dnevnik2 {
   get_journal_institution_related_jurisdiction_list(p_page) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/institution/related-jurisdiction-list?p_page=${p_page}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/institution/related-jurisdiction-list";
     });
   }
@@ -326,9 +326,9 @@ class dnevnik2 {
   get_journal_lesson_list_by_education(p_page, p_datetime_from, p_datetime_to, p_educations) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/lesson/list-by-education?p_page=${p_page}&p_datetime_from=${p_datetime_from}&p_datetime_to=${p_datetime_to}&p_educations[]=${p_educations}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/lesson/list-by-education";
     });
   }
@@ -346,9 +346,9 @@ class dnevnik2 {
   get_journal_estimate_table(p_educations, p_date_from, p_date_to, p_limit = 1, p_page = 1) {
     return axios.get(`https://dnevnik2.petersburgedu.ru/api/journal/estimate/table?p_educations[]=${p_educations}&p_date_from=${p_date_from}&p_date_to=${p_date_to}&p_limit=${p_limit}&p_page=${p_page}`,this.headers)
     .then(response => {
-      return response.data.data
+      return response.data.data;
     })
-    .catch(error => {
+    .catch(() => {
       throw "Something went wrong by getting api/journal/estimate/table";
     });
   } 

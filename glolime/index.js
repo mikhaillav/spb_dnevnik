@@ -27,13 +27,12 @@ class glolime {
             .then(response => {    
                 data = iconv.decode(response.data, 'windows-1251');
     
-                const root = parse.parse(data)
-                const str = Number(root.querySelectorAll("td")[0].childNodes[0]._rawText)
+                const root = parse.parse(data);
+                const str = Number(root.querySelectorAll("td")[0].childNodes[0]._rawText);
     
-                return str
+                return str;
             })
-            .catch(error => {
-                console.log(error)
+            .catch(() => {
                 throw "Something went wrong by getting school.glolime.ru/api/netrika/userinfo/ via frameData";
             });
         }
@@ -49,10 +48,10 @@ class glolime {
         .then(response => {    
             let data = iconv.decode(response.data, 'windows-1251');
 
-            const root = parse.parse(data)
-            const str = Number(root.querySelectorAll("td")[0].childNodes[0]._rawText)
+            const root = parse.parse(data);
+            const str = Number(root.querySelectorAll("td")[0].childNodes[0]._rawText);
 
-            return str
+            return str;
         })
         .catch(error => {
             console.log(error)
@@ -68,7 +67,7 @@ class glolime {
      * @param {Number} usernumber 
     */
     getAddMoneyString(type, usernumber){
-        return `https://school.glolime.ru/acquiring/searchbypaymentnumber/acquier/?type=${type}&usernumber=${usernumber}`
+        return `https://school.glolime.ru/acquiring/searchbypaymentnumber/acquier/?type=${type}&usernumber=${usernumber}`;
     }
 
     /**
@@ -88,9 +87,8 @@ class glolime {
     */
     transferMoney(sourceAccount, destinationAccount, sum, merch_gmt, merch_url, nonce, suid, timestamp, token, zsign){
         return axios.get(`https://school.glolime.ru/api/netrika/transfer/create/?sourceAccount=${sourceAccount}&destinationAccount=${destinationAccount}&sum=${sum}&merch_gmt=${merch_gmt}&merch_url=${merch_url}&nonce=${nonce}&suid=${suid}&timestamp=${timestamp}&token=${token}&zsign=${zsign}`)
-        .then(response => {    })
-        .catch(error => {
-            console.log(error)
+        .then(() => {    })
+        .catch(() => {
             throw "Something went wrong by getting school.glolime.ru/api/netrika/transfer/create/";
         });
     }
@@ -104,8 +102,7 @@ class glolime {
     transferMoney_frameData(frameData){
         return axios.get(`https://school.glolime.ru/api/netrika/transfer/create/?${frameData}`)
         .then(response => {    })
-        .catch(error => {
-            console.log(error)
+        .catch(() => {
             throw "Something went wrong by getting school.glolime.ru/api/netrika/transfer/create/";
         });
     }
@@ -128,8 +125,8 @@ class glolime {
         .then(response => {
             let data = iconv.decode(response.data, 'windows-1251');
 
-            const root = parse.parse(data)
-            const str = root.querySelectorAll("tbody")[0]
+            const root = parse.parse(data);
+            const str = root.querySelectorAll("tbody")[0];
 
             return {
                 hot_feed:    Number(str.childNodes[1].childNodes[1].rawText),
@@ -140,8 +137,7 @@ class glolime {
                 mobile_app:  Number(str.childNodes[6].childNodes[1].rawText)
             }  
         })
-        .catch(error => {
-            console.log(error)
+        .catch(() => {
             throw "Something went wrong by getting school.glolime.ru/api/netrika/account";
         });
     }
@@ -157,8 +153,8 @@ class glolime {
         .then(response => {
             let data = iconv.decode(response.data, 'windows-1251');
 
-            const root = parse.parse(data)
-            const str = root.querySelectorAll("tbody")[0]
+            const root = parse.parse(data);
+            const str = root.querySelectorAll("tbody")[0];
 
             return {
                 hot_feed:    Number(str.childNodes[1].childNodes[1].rawText),
