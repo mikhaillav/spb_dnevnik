@@ -101,7 +101,7 @@ class glolime {
      */
     transferMoney_frameData(frameData){
         return axios.get(`https://school.glolime.ru/api/netrika/transfer/create/?${frameData}`)
-        .then(response => {    })
+        .then(() => {    })
         .catch(() => {
             throw "Something went wrong by getting school.glolime.ru/api/netrika/transfer/create/";
         });
